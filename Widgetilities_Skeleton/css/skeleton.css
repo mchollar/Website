@@ -28,6 +28,7 @@
 
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+
 .container {
   position: relative;
   width: 100%;
@@ -41,12 +42,13 @@
   float: left;
   box-sizing: border-box; }
 
-/* For devices larger than 400px */
+ For devices larger than 400px 
 @media (min-width: 400px) {
   .container {
     width: 85%;
     padding: 0; }
 }
+
 
 /* For devices larger than 550px */
 @media (min-width: 550px) {
@@ -288,6 +290,7 @@ label > .label-body {
 
 /* Lists
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+
 ul {
   list-style: circle inside; }
 ol {
