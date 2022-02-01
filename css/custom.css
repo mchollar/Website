@@ -51,12 +51,20 @@
 
 /* Photo Side-Scroll
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-.photo-scroll {
-  background-color: lightblue;
-  border: 1px solid black;
-  height: 100px;
-  width: 2000px;
-  overflow-x scroll;
+.photo-carousel {
+  width: 90%;
+  margin: 0px auto;
+}
+.slick-slide {
+  margin: 10px;
+}
+.slick-slide img {
+  width: 75%;
+  border: 2px solid #fff;
+}
+.wrapper .slick-dots li button:before {
+  font-size: 20px;
+  color: white;
 }
 
 /* Navigation Bar
