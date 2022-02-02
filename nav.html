@@ -29,7 +29,7 @@
   </a>
 </div>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   $("dropdown").on("touchstart", function (e) {
     "use strict";
     var link = $(this);
@@ -42,4 +42,12 @@
       return false;
     }
   });
+</script> -->
+<script type="text/javascript">
+  $("#nav > dropdown").on("click", toggleNav);
+  var toggleNave = function (evt) {
+    var clicked = $(this).parent().attr("class");
+    $("#nav").removeClass("btn1").addClass(clicked);
+    evt.preventDefault();
+  };
 </script>
