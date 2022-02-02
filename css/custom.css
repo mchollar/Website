@@ -92,9 +92,7 @@
 /* The dropdown container */
 .dropdown {
   float: left;
-  overflow: hidden;
-  /*    position: relative;*/
-  /*    display: inline-block;*/
+  overflow: visible;
 }
 
 /* Dropdown button */
@@ -107,11 +105,6 @@
   background-color: inherit;
   font-family: inherit; /* Important for vertical align on mobile phones */
   margin: 0; /* Important for vertical align on mobile phones */
-}
-
-#nav .dropdown:hover,
-#nav.btn1 {
-  display: block;
 }
 
 /* Add a red background color to navbar links on hover */
