@@ -9,7 +9,7 @@
   <!-- <img src="images/favicon.png" width="32" /> -->
   <a href="index.html">Home</a>
 
-  <div class="dropdown">
+  <div class="dropdown" href="#">
     <p class="dropbtn" href="#">
       Apps
       <i class="fa fa-caret-down"></i>
@@ -28,3 +28,18 @@
     <i class="fa fa-bars"></i>
   </a>
 </div>
+
+<script type="text/javascript">
+  $("dropbtn").on("touchstart", function (e) {
+    "use strict";
+    var link = $(this);
+    if (link.hasClass("hover")) {
+      return true;
+    } else {
+      link.addClass("hover");
+      $("dropbtn").not(this).removeClass("hover");
+      e.preventDefault();
+      return false;
+    }
+  });
+</script>
