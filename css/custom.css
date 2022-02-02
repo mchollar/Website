@@ -113,6 +113,7 @@
 .navbar a:hover,
 .dropdown:hover .dropbtn {
   background-color: red;
+  display: block;
 }
 
 /* Dropdown content (hidden by default) */
