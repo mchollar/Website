@@ -1,5 +1,12 @@
-<div class="navbar">
-  <img src="images/favicon.png" width="32" />
+<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+
+<div class="navbar" id="myNavBar">
+  <a href="/index.html"><img src="images/favicon.png" width="28" /></a>
+  <!-- <img src="images/favicon.png" width="32" /> -->
   <a href="/index.html">Home</a>
 
   <div class="dropdown">
@@ -17,4 +24,7 @@
   <a href="/index.html#contact">Contact</a>
   <a href="/privacy.html">Privacy</a>
   <a href="/about.html">About</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+    <i class="fa fa-bars"></i>
+  </a>
 </div>
