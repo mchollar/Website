@@ -16,3 +16,13 @@ function toggleMenu() {
     x.className = "navbar";
   }
 }
+
+/* Toggle between adding and removing the "dropdown-shown" class to topnav when the user clicks on the icon */
+function toggleDropdown() {
+  var x = document.getElementById("myNavBar");
+  if (x.className === "navbar responsive") {
+    x.className += " dropdown-shown";
+  } else {
+    x.className = "navbar responsive";
+  }
+}

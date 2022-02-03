@@ -214,4 +214,8 @@
     display: block;
     text-align: right;
   }
+
+  .navbar.responsive.dropdown-shown {
+    overflow: visible;
+  }
 }
