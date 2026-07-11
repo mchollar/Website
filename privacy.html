@@ -1,195 +1,185 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <meta charset="utf-8" />
-    <title>Widgetilities | Privacy</title>
-    <meta name="description" content="Widgetilities Privacy Policy" />
-    <meta name="author" content="Micah Chollar" />
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Widgetilities</title>
+<link rel="icon" href="assets/favicon.png">
+</head>
+<body>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:var(--bg,#fbfbfd);}
+  .app-root{
+    --bg:#f5f5f7; --bg2:#fbfbfd; --surface:#ffffff; --card:#ffffff; --card-border:#e9e9ec;
+    --text:#1d1d1f; --text2:#5f5f66; --text3:#8a8a90; --border:#e9e9ec;
+    --rt:#2f5fb0; --lec:#34a056; --nb:#dd5430; --gold:#c8920a;
+    --rt-soft:#eef3fb; --lec-soft:#ecf6ef; --nb-soft:#fdede8;
+    --nav-bg:rgba(251,251,253,.72); --shadow:0 18px 50px rgba(0,0,0,.13);
+    --orb-rt:rgba(47,95,176,.18); --orb-lec:rgba(52,160,86,.16); --orb-gold:rgba(200,146,10,.15); --center-c:rgba(58,111,240,0);
+    --seg-bg:#e9e9ec; --seg-active:#fff; --logo-d:#1d1d1f; --logo-l:#c7c7cc;
+    color-scheme:light;
+  }
+  .app-root[data-theme="dark"]{
+    --bg:#0a0e27; --bg2:#0b1238; --surface:rgba(255,255,255,.045); --card:rgba(255,255,255,.045); --card-border:rgba(255,255,255,.09);
+    --text:#f5f5f7; --text2:rgba(255,255,255,.66); --text3:rgba(255,255,255,.5); --border:rgba(255,255,255,.1);
+    --rt:#5a8bff; --lec:#4cc46a; --nb:#ff7a52; --gold:#f5b301;
+    --rt-soft:rgba(90,139,255,.12); --lec-soft:rgba(76,196,106,.12); --nb-soft:rgba(255,122,82,.12);
+    --nav-bg:rgba(10,14,39,.66); --shadow:0 24px 60px rgba(0,0,0,.5);
+    --orb-rt:rgba(58,111,240,0); --orb-lec:rgba(58,111,240,0); --orb-gold:rgba(58,111,240,0); --center-c:rgba(58,111,240,.34);
+    --seg-bg:rgba(255,255,255,.1); --seg-active:rgba(255,255,255,.22); --logo-d:#5a8bff; --logo-l:#f5b301;
+    color-scheme:dark;
+  }
+  @media (prefers-color-scheme:dark){
+    .app-root[data-theme="auto"]{
+      --bg:#0a0e27; --bg2:#0b1238; --surface:rgba(255,255,255,.045); --card:rgba(255,255,255,.045); --card-border:rgba(255,255,255,.09);
+      --text:#f5f5f7; --text2:rgba(255,255,255,.66); --text3:rgba(255,255,255,.5); --border:rgba(255,255,255,.1);
+      --rt:#5a8bff; --lec:#4cc46a; --nb:#ff7a52; --gold:#f5b301;
+      --rt-soft:rgba(90,139,255,.12); --lec-soft:rgba(76,196,106,.12); --nb-soft:rgba(255,122,82,.12);
+      --nav-bg:rgba(10,14,39,.66); --shadow:0 24px 60px rgba(0,0,0,.5);
+      --orb-rt:rgba(58,111,240,0); --orb-lec:rgba(58,111,240,0); --orb-gold:rgba(58,111,240,0); --center-c:rgba(58,111,240,.34);
+      --seg-bg:rgba(255,255,255,.1); --seg-active:rgba(255,255,255,.22); --logo-d:#5a8bff; --logo-l:#f5b301;
+      color-scheme:dark;
+    }
+  }
+  html{scroll-behavior:smooth;}
+  .app-root{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue","Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);color:var(--text);min-height:100vh;transition:background .4s ease,color .4s ease;}
+  .nav-links{display:flex;gap:clamp(16px,3vw,32px);align-items:center;}
+  @media (max-width:560px){ .nav-wordmark{display:none;} .nav-links{gap:16px;} }
+  a{color:inherit;text-decoration:none;}
+  .foot-link{color:var(--text2);font-size:14px;line-height:2.1;transition:color .2s;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;}
+  @media (max-width:760px){ .foot-grid{grid-template-columns:1fr 1fr;gap:28px 24px;} }
 
-    <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  .foot-link:hover{color:var(--text);}
+  .seg-btn{}
+</style>
 
-    <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link
-      href="//fonts.googleapis.com/css?family=Raleway:400,300,600"
-      rel="stylesheet"
-      type="text/css"
-    />
+<div class="app-root" data-theme="auto" data-screen-label="Privacy">
 
-    <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link rel="stylesheet" href="css/normalize.css" />
-    <link rel="stylesheet" href="css/skeleton.css" />
-    <link rel="stylesheet" href="css/custom.css" />
-
-    <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link rel="icon" type="image/png" href="images/favicon.png" />
-  </head>
-  <body tabindex="0">
-    <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <script id="replace_with_navbar" src="js/nav.js"></script>
-
-    <div class="section">
-      <div class="container">
-        <h1>Privacy Policy</h1>
-        <h6>*yawn*</h6>
+  <!-- ===== NAV ===== -->
+  <div style="position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);background:var(--nav-bg);border-bottom:1px solid var(--border);">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px clamp(20px,5vw,40px);">
+      <a href="index.html" style="display:flex;align-items:center;gap:11px;">
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:3px;width:26px;height:26px;">
+          <div style="background:var(--logo-d);border-radius:6px;"></div>
+          <div style="background:var(--logo-d);border-radius:6px;"></div>
+          <div style="background:var(--logo-d);border-radius:6px;"></div>
+          <div style="background:var(--logo-l);border-radius:6px;"></div>
+        </div>
+        <span class="nav-wordmark" style="font-weight:600;font-size:18px;letter-spacing:-0.02em;color:var(--text);">Widgetilities</span>
+      </a>
+      <div style="display:flex;align-items:center;gap:clamp(14px,3vw,24px);">
+        <div class="nav-links">
+          <a href="index.html#apps" style="font-size:14px;font-weight:500;color:var(--text);">Apps</a>
+          <a href="about.html" style="font-size:14px;font-weight:500;color:var(--text2);">About</a>
+          <a href="index.html#contact" style="font-size:14px;font-weight:500;color:var(--text2);">Contact</a>
+        </div>
+        <!-- theme toggle -->
+        <div style="display:flex;background:var(--seg-bg);border-radius:980px;padding:3px;gap:2px;">
+          <div class="seg-btn" data-theme-btn="auto" title="Auto (match system)" onclick="wgSetTheme('auto')">Auto</div>
+          <div class="seg-btn" data-theme-btn="light" title="Light" onclick="wgSetTheme('light')">☀</div>
+          <div class="seg-btn" data-theme-btn="dark" title="Dark" onclick="wgSetTheme('dark')">☾</div>
+        </div>
       </div>
     </div>
-    <div class="container">
-      <h2>ReadingTime - Family Tracker:</h2>
-      <p>
-        ReadingTime stores only the data you enter: reader names, books, reading sessions, ratings, and notes. Starting with version 2.0, this data is synced to Apple’s iCloud via CloudKit, so it is available across all devices signed in to your iCloud account. The app’s Family Sharing feature allows you to optionally share an individual reader’s shelf with another iCloud user, such as another family member.
-      </p>
+  </div>
 
-      <h4>Data we collect:</h4>
-      <p>Only the data you choose to enter — reader names, books, reading times, ratings, and notes. No usage analytics, no advertising identifiers, no location data.</p>
-
-      <h4>Third parties:</h4>
-      <ul>
-        <li><strong>Apple CloudKit</strong> — used to sync your data across your devices. Subject to <a href="https://www.apple.com/legal/privacy/" target="_blank">Apple’s Privacy Policy</a>.</li>
-        <li><strong>Google Books API</strong> — used when you search for books by title or author. Only your search query is sent; no personal data is transmitted.</li>
-        <li><strong>TelemetryDeck</strong> — used to collect anonymized, non-personal usage analytics (such as which features are used and app version). No personally identifiable information is collected or transmitted. Subject to <a href="https://telemetrydeck.com/privacy/" target="_blank">TelemetryDeck's Privacy Policy</a>.</li>
-      </ul>
-      <p>No other third-party services are used.</p>
-
-      <h4>Data retention and deletion:</h4>
-      <p>Your data lives on your device and in your iCloud account. You can delete individual entries from within the app at any time. To remove your data from iCloud entirely, go to Settings → [your name] → iCloud on your device. Deleting the app removes local data; iCloud data must be removed separately through your iCloud settings.</p>
-
-      <h2>Airmanship Help Button:</h2>
-      <p>
-        Apple’s iOS App Store requires that we provide the following information
-        regarding Airmanship Help Button:
-      </p>
-      <ol>
-        <li>
-          Identify what data, if any, the app/service collects, how it collects
-          that data, and all uses of that data.
-          <ul>
-            <li>
-              Airmanship Help Button does not access any private user data. The
-              only data stored is that which the user enters in the form of
-              phone numbers and names.
-            </li>
-          </ul>
-        </li>
-        <li>
-          Confirm that any third party with whom an app shares user data (in
-          compliance with these Guidelines) — such as analytics tools,
-          advertising networks and third party SDKs, as well as any parent,
-          subsidiary or other related entities that will have access to user
-          data — will provide the same or equal protection of user data as
-          stated in the app’s privacy policy and required by these Guidelines.
-        </li>
-        <ul>
-          <li>
-            Airmanship Help Button does not share information of any sort with
-            any other party or service..
-          </li>
-        </ul>
-        <li>
-          Explain its data retention/deletion policies and describe how a user
-          can revoke consent and/or request deletion of the user’s data.
-        </li>
-        <ul>
-          <li>
-            Airmanship Help Button only stores data locally on the user’s device
-            at this time. Deletion is entirely up to the user.
-          </li>
-        </ul>
-      </ol>
-
-      <h2>Lectios:</h2>
-      <p>
-        Apple’s iOS App Store requires that we provide the following information
-        regarding Lectios:
-      </p>
-      <ol>
-        <li>
-          Identify what data, if any, the app/service collects, how it collects
-          that data, and all uses of that data.
-          <ul>
-            <li>
-              Lectios only collects the data you enter and stores it on the
-              device in a local cache, which is backed up to iCloud if you’re
-              logged in to it. This allows all devices on your iCloud account to
-              have sync’ed data.
-            </li>
-          </ul>
-        </li>
-        <li>
-          Confirm that any third party with whom an app shares user data (in
-          compliance with these Guidelines) — such as analytics tools,
-          advertising networks and third party SDKs, as well as any parent,
-          subsidiary or other related entities that will have access to user
-          data — will provide the same or equal protection of user data as
-          stated in the app’s privacy policy and required by these Guidelines.
-        </li>
-        <ul>
-          <li>Lectios does not share data with any third parties.</li>
-        </ul>
-        <li>
-          Explain its data retention/deletion policies and describe how a user
-          can revoke consent and/or request deletion of the user’s data.
-        </li>
-        <ul>
-          <li>
-            There is no need for a data retention or deletion policy. If you
-            want to delete the data from your device and iCloud account, that’s
-            entirely up to you as I do not store it anywhere.
-          </li>
-        </ul>
-      </ol>
-
-      <h2>NumberBuilder:</h2>
-      <p>
-        Apple’s iOS App Store requires that we provide the following information
-        regarding NumberBuilder:
-      </p>
-      <ol>
-        <li>
-          Identify what data, if any, the app/service collects, how it collects
-          that data, and all uses of that data.
-          <ul>
-            <li>
-              NumberBuilder does not access any private user data, nor does it
-              store any data.
-            </li>
-          </ul>
-        </li>
-        <li>
-          Confirm that any third party with whom an app shares user data (in
-          compliance with these Guidelines) — such as analytics tools,
-          advertising networks and third party SDKs, as well as any parent,
-          subsidiary or other related entities that will have access to user
-          data — will provide the same or equal protection of user data as
-          stated in the app’s privacy policy and required by these Guidelines.
-        </li>
-        <ul>
-          <li>
-            NumberBuilder does not share information of any sort with any other
-            party or service.
-          </li>
-        </ul>
-        <li>
-          Explain its data retention/deletion policies and describe how a user
-          can revoke consent and/or request deletion of the user’s data.
-        </li>
-        <ul>
-          <li>
-            NumberBuilder doesn’t store any data. Deletion is entirely up to the
-            user.
-          </li>
-        </ul>
-      </ol>
+  <!-- ===== PRIVACY HERO ===== -->
+  <div style="text-align:center;padding:clamp(54px,8vw,90px) clamp(20px,5vw,40px) clamp(8px,2vw,16px);">
+    <div style="max-width:640px;margin:0 auto;">
+      <div style="font-weight:600;font-size:13px;color:var(--rt);letter-spacing:0.08em;text-transform:uppercase;">Privacy</div>
+      <h1 style="font-weight:600;font-size:clamp(32px,5.5vw,54px);line-height:1.06;letter-spacing:-0.03em;margin-top:16px;color:var(--text);">Privacy Policy</h1>
+      <p style="font-weight:400;font-size:clamp(16px,2.2vw,20px);line-height:1.5;color:var(--text2);margin-top:18px;">The short version: our apps don’t collect personal data, and we never sell or share your information with third parties. The details, app by app, are below.</p>
     </div>
+  </div>
 
-    <!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  </body>
+  <!-- ===== PRIVACY BODY ===== -->
+  <div style="max-width:820px;margin:0 auto;padding:clamp(28px,4vw,40px) clamp(20px,5vw,40px) clamp(50px,7vw,80px);">
+    <div style="background:var(--card);border:1px solid var(--card-border);border-radius:22px;padding:clamp(26px,4vw,38px);margin-top:22px;">
+  <h2 style="font-weight:600;font-size:clamp(21px,3vw,26px);letter-spacing:-0.02em;color:var(--rt);">ReadingTime — Family Tracker</h2><p style="font-size:15.5px;line-height:1.65;color:var(--text2);margin-top:12px;">ReadingTime stores only the data you enter: reader names, books, reading sessions, ratings, and notes. Starting with version 2.0, this data is synced to Apple’s iCloud via CloudKit, so it is available across all devices signed in to your iCloud account. The app’s Family Sharing feature lets you optionally share an individual reader’s shelf with another iCloud user, such as another family member.</p><div style="font-weight:600;font-size:15px;color:var(--text);margin-top:20px;">Data we collect</div><p style="font-size:15.5px;line-height:1.65;color:var(--text2);margin-top:12px;">Only the data you choose to enter — reader names, books, reading times, ratings, and notes. No usage analytics tied to you, no advertising identifiers, no location data.</p><div style="font-weight:600;font-size:15px;color:var(--text);margin-top:20px;">Third parties</div><ul style="margin:6px 0 0;padding-left:20px;"><li style="font-size:15.5px;line-height:1.6;color:var(--text2);margin-top:8px;"><strong style="color:var(--text);">Apple CloudKit</strong> — used to sync your data across your devices. Subject to <a style="color:var(--rt);" href="https://www.apple.com/legal/privacy/" target="_blank">Apple’s Privacy Policy</a>.</li><li style="font-size:15.5px;line-height:1.6;color:var(--text2);margin-top:8px;"><strong style="color:var(--text);">Google Books API</strong> — used when you search for books by title or author. Only your search query is sent; no personal data is transmitted.</li><li style="font-size:15.5px;line-height:1.6;color:var(--text2);margin-top:8px;"><strong style="color:var(--text);">TelemetryDeck</strong> — used to collect anonymized, non-personal usage analytics (such as which features are used and app version). No personally identifiable information is collected. Subject to <a style="color:var(--rt);" href="https://telemetrydeck.com/privacy/" target="_blank">TelemetryDeck’s Privacy Policy</a>.</li></ul><p style="font-size:15.5px;line-height:1.65;color:var(--text2);margin-top:12px;">No other third-party services are used.</p><div style="font-weight:600;font-size:15px;color:var(--text);margin-top:20px;">Data retention and deletion</div><p style="font-size:15.5px;line-height:1.65;color:var(--text2);margin-top:12px;">Your data lives on your device and in your iCloud account. You can delete individual entries from within the app at any time. To remove your data from iCloud entirely, go to Settings → [your name] → iCloud on your device. Deleting the app removes local data; iCloud data must be removed separately through your iCloud settings.</p></div>
+    <div style="background:var(--card);border:1px solid var(--card-border);border-radius:22px;padding:clamp(26px,4vw,38px);margin-top:22px;">
+  <h2 style="font-weight:600;font-size:clamp(21px,3vw,26px);letter-spacing:-0.02em;color:var(--rt);">Lectios</h2><p style="font-size:15.5px;line-height:1.65;color:var(--text2);margin-top:12px;">Apple’s iOS App Store requires that we provide the following information regarding Lectios:</p><div style="font-weight:600;font-size:15px;color:var(--text);margin-top:20px;">What data it collects</div><p style="font-size:15.5px;line-height:1.65;color:var(--text2);margin-top:12px;">Lectios only collects the data you enter and stores it on the device in a local cache, which is backed up to iCloud if you’re logged in. This lets all devices on your iCloud account stay in sync.</p><div style="font-weight:600;font-size:15px;color:var(--text);margin-top:20px;">Third-party sharing</div><p style="font-size:15.5px;line-height:1.65;color:var(--text2);margin-top:12px;">Lectios does not share information of any sort with any other party or service.</p><div style="font-weight:600;font-size:15px;color:var(--text);margin-top:20px;">Data retention and deletion</div><p style="font-size:15.5px;line-height:1.65;color:var(--text2);margin-top:12px;">There is no need for a separate retention or deletion policy — your data is yours. If you want to delete it from your device and iCloud account, that’s entirely up to you; it is not stored anywhere else.</p></div>
+    <div style="background:var(--card);border:1px solid var(--card-border);border-radius:22px;padding:clamp(26px,4vw,38px);margin-top:22px;">
+  <h2 style="font-weight:600;font-size:clamp(21px,3vw,26px);letter-spacing:-0.02em;color:var(--rt);">NumberBuilder</h2><p style="font-size:15.5px;line-height:1.65;color:var(--text2);margin-top:12px;">Apple’s iOS App Store requires that we provide the following information regarding NumberBuilder:</p><div style="font-weight:600;font-size:15px;color:var(--text);margin-top:20px;">What data it collects</div><p style="font-size:15.5px;line-height:1.65;color:var(--text2);margin-top:12px;">NumberBuilder does not access any private user data, nor does it store any data.</p><div style="font-weight:600;font-size:15px;color:var(--text);margin-top:20px;">Third-party sharing</div><p style="font-size:15.5px;line-height:1.65;color:var(--text2);margin-top:12px;">NumberBuilder does not share information of any sort with any other party or service.</p><div style="font-weight:600;font-size:15px;color:var(--text);margin-top:20px;">Data retention and deletion</div><p style="font-size:15.5px;line-height:1.65;color:var(--text2);margin-top:12px;">NumberBuilder doesn’t store any data. Deletion is entirely up to the user.</p></div>
+    <div style="background:var(--card);border:1px solid var(--card-border);border-radius:22px;padding:clamp(26px,4vw,38px);margin-top:22px;">
+  <h2 style="font-weight:600;font-size:clamp(21px,3vw,26px);letter-spacing:-0.02em;color:var(--rt);">Airmanship Help Button</h2><p style="font-size:15.5px;line-height:1.65;color:var(--text2);margin-top:12px;">Apple’s iOS App Store requires that we provide the following information regarding Airmanship Help Button:</p><div style="font-weight:600;font-size:15px;color:var(--text);margin-top:20px;">What data it collects</div><p style="font-size:15.5px;line-height:1.65;color:var(--text2);margin-top:12px;">Airmanship Help Button does not access any private user data. The only data stored is what the user enters, in the form of phone numbers and names.</p><div style="font-weight:600;font-size:15px;color:var(--text);margin-top:20px;">Third-party sharing</div><p style="font-size:15.5px;line-height:1.65;color:var(--text2);margin-top:12px;">Airmanship Help Button does not share information of any sort with any other party or service.</p><div style="font-weight:600;font-size:15px;color:var(--text);margin-top:20px;">Data retention and deletion</div><p style="font-size:15.5px;line-height:1.65;color:var(--text2);margin-top:12px;">Airmanship Help Button only stores data locally on the user’s device. Deletion is entirely up to the user.</p></div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <div id="contact" style="background:var(--surface);border-top:1px solid var(--border);scroll-margin-top:70px;">
+    <div class="foot-grid" style="max-width:1100px;margin:0 auto;padding:clamp(48px,6vw,68px) clamp(20px,5vw,40px);">
+      <div style="min-width:200px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:2.5px;width:22px;height:22px;">
+            <div style="background:var(--logo-d);border-radius:5px;"></div><div style="background:var(--logo-d);border-radius:5px;"></div><div style="background:var(--logo-d);border-radius:5px;"></div><div style="background:var(--logo-l);border-radius:5px;"></div>
+          </div>
+          <span style="font-weight:600;font-size:17px;letter-spacing:-0.02em;color:var(--text);">Widgetilities</span>
+        </div>
+        <p style="font-size:14px;line-height:1.6;color:var(--text2);margin-top:16px;max-width:280px;">An independent app studio making useful, beautifully crafted apps for parents and educators.</p>
+        <a href="https://apps.apple.com/us/developer/widgetilities-llc/id1373578566" target="_blank" style="display:inline-block;margin-top:18px;"><img src="assets/appstore-badge.png" style="height:40px;"></a>
+      </div>
+      <div>
+        <div style="font-weight:600;font-size:13px;color:var(--text3);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:8px;">Apps</div>
+        <a class="foot-link" href="reading_time.html">ReadingTime</a><br>
+        <a class="foot-link" href="lectios.html">Lectios</a><br>
+        <a class="foot-link" href="number_builder.html">NumberBuilder</a><br>
+        <a class="foot-link" href="other_apps.html">Other Apps</a>
+      </div>
+      <div>
+        <div style="font-weight:600;font-size:13px;color:var(--text3);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:8px;">Company</div>
+        <a class="foot-link" href="about.html">About</a><br>
+        <a class="foot-link" href="privacy.html">Privacy</a><br>
+        <a class="foot-link" href="https://apps.apple.com/us/developer/widgetilities-llc/id1373578566" target="_blank">App Store</a>
+      </div>
+      <div>
+        <div style="font-weight:600;font-size:13px;color:var(--text3);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:8px;">Get in touch</div>
+        <a class="foot-link" href="mailto:info@widgetilities.com">info@widgetilities.com</a>
+      </div>
+    </div>
+    <div style="border-top:1px solid var(--border);">
+      <div style="max-width:1100px;margin:0 auto;padding:20px clamp(20px,5vw,40px);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+        <span style="font-size:13px;color:var(--text3);">© 2026 Widgetilities LLC</span>
+        <span style="font-size:13px;color:var(--text3);">Built &amp; maintained by Micah Chollar</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script>
+(function(){
+  function seg(active){
+    return "cursor:pointer;user-select:none;font-size:12px;font-weight:600;line-height:1;display:flex;align-items:center;justify-content:center;min-width:30px;height:24px;padding:0 10px;border-radius:980px;transition:background .2s;color:var(--text);"
+      + (active ? "background:var(--seg-active);box-shadow:0 1px 3px rgba(0,0,0,.12);" : "background:transparent;");
+  }
+  function applyTheme(t){
+    var root = document.querySelector('.app-root');
+    if (root) root.setAttribute('data-theme', t);
+    var btns = document.querySelectorAll('[data-theme-btn]');
+    for (var i=0;i<btns.length;i++){
+      btns[i].setAttribute('style', seg(btns[i].getAttribute('data-theme-btn') === t));
+    }
+  }
+  window.wgSetTheme = function(t){
+    try { localStorage.setItem('wg-theme', t); } catch(e){}
+    applyTheme(t);
+  };
+  var t = null;
+  try {
+    var u = new URLSearchParams(location.search).get('theme');
+    t = u || localStorage.getItem('wg-theme');
+  } catch(e){}
+  if (t !== 'light' && t !== 'dark' && t !== 'auto') t = 'auto';
+  applyTheme(t);
+
+  if (location.hash) {
+    var target = function(){ return document.getElementById(location.hash.slice(1)); };
+    var rescroll = function(){ var el = target(); if (el) el.scrollIntoView(); };
+    window.addEventListener('load', rescroll);
+    setTimeout(rescroll, 300);
+    setTimeout(rescroll, 900);
+  }
+})();
+</script>
+</body>
 </html>

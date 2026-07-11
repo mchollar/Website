@@ -1,172 +1,340 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <meta charset="utf-8" />
-    <title>Widgetilities | ReadingTime</title>
-    <meta name="description" content="ReadingTime - Family Tracker: the private reading tracker for your whole family. Track books, log reading sessions, and now sync across all your devices with iCloud." />
-    <meta name="author" content="Micah Chollar" />
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ReadingTime — Widgetilities</title>
+<link rel="icon" href="assets/favicon.png">
+</head>
+<body>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:var(--bg,#fbfbfd);}
+  .app-root{
+    --bg:#f5f5f7; --bg2:#fbfbfd; --surface:#ffffff; --card:#ffffff; --card-border:#e9e9ec;
+    --text:#1d1d1f; --text2:#5f5f66; --text3:#8a8a90; --border:#e9e9ec;
+    --rt:#2f5fb0; --lec:#34a056; --nb:#dd5430; --gold:#c8920a;
+    --rt-soft:#eef3fb; --lec-soft:#ecf6ef; --nb-soft:#fdede8;
+    --nav-bg:rgba(251,251,253,.72); --shadow:0 18px 50px rgba(0,0,0,.13);
+    --orb-rt:rgba(47,95,176,.18); --orb-lec:rgba(52,160,86,.16); --orb-gold:rgba(200,146,10,.15); --center-c:rgba(58,111,240,0);
+    --seg-bg:#e9e9ec; --seg-active:#fff; --logo-d:#1d1d1f; --logo-l:#c7c7cc;
+    color-scheme:light;
+  }
+  .app-root[data-theme="dark"]{
+    --bg:#0a0e27; --bg2:#0b1238; --surface:rgba(255,255,255,.045); --card:rgba(255,255,255,.045); --card-border:rgba(255,255,255,.09);
+    --text:#f5f5f7; --text2:rgba(255,255,255,.66); --text3:rgba(255,255,255,.5); --border:rgba(255,255,255,.1);
+    --rt:#5a8bff; --lec:#4cc46a; --nb:#ff7a52; --gold:#f5b301;
+    --rt-soft:rgba(90,139,255,.12); --lec-soft:rgba(76,196,106,.12); --nb-soft:rgba(255,122,82,.12);
+    --nav-bg:rgba(10,14,39,.66); --shadow:0 24px 60px rgba(0,0,0,.5);
+    --orb-rt:rgba(58,111,240,0); --orb-lec:rgba(58,111,240,0); --orb-gold:rgba(58,111,240,0); --center-c:rgba(58,111,240,.34);
+    --seg-bg:rgba(255,255,255,.1); --seg-active:rgba(255,255,255,.22); --logo-d:#5a8bff; --logo-l:#f5b301;
+    color-scheme:dark;
+  }
+  @media (prefers-color-scheme:dark){
+    .app-root[data-theme="auto"]{
+      --bg:#0a0e27; --bg2:#0b1238; --surface:rgba(255,255,255,.045); --card:rgba(255,255,255,.045); --card-border:rgba(255,255,255,.09);
+      --text:#f5f5f7; --text2:rgba(255,255,255,.66); --text3:rgba(255,255,255,.5); --border:rgba(255,255,255,.1);
+      --rt:#5a8bff; --lec:#4cc46a; --nb:#ff7a52; --gold:#f5b301;
+      --rt-soft:rgba(90,139,255,.12); --lec-soft:rgba(76,196,106,.12); --nb-soft:rgba(255,122,82,.12);
+      --nav-bg:rgba(10,14,39,.66); --shadow:0 24px 60px rgba(0,0,0,.5);
+      --orb-rt:rgba(58,111,240,0); --orb-lec:rgba(58,111,240,0); --orb-gold:rgba(58,111,240,0); --center-c:rgba(58,111,240,.34);
+      --seg-bg:rgba(255,255,255,.1); --seg-active:rgba(255,255,255,.22); --logo-d:#5a8bff; --logo-l:#f5b301;
+      color-scheme:dark;
+    }
+  }
+  html{scroll-behavior:smooth;}
+  .app-root{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue","Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);color:var(--text);min-height:100vh;transition:background .4s ease,color .4s ease;}
+  .nav-links{display:flex;gap:clamp(16px,3vw,32px);align-items:center;}
+  @media (max-width:560px){ .nav-wordmark{display:none;} .nav-links{gap:16px;} }
+  a{color:inherit;text-decoration:none;}
+  .foot-link{color:var(--text2);font-size:14px;line-height:2.1;transition:color .2s;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;}
+  @media (max-width:760px){ .foot-grid{grid-template-columns:1fr 1fr;gap:28px 24px;} }
+  @keyframes wg-marquee{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 10px))}}
+  .mq-wrap{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);}
+  .mq-track{display:flex;gap:20px;width:max-content;animation:wg-marquee 58s linear infinite;}
+  .mq-wrap:hover .mq-track{animation-play-state:paused;}
 
-    <!-- Open Graph
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <meta property="og:title" content="ReadingTime - Family Tracker" />
-    <meta property="og:description" content="The private reading tracker for your whole family. Track books, log reading sessions, and sync across all your devices with iCloud." />
-    <meta property="og:image" content="https://www.widgetilities.com/images/readingtime-icon-large-1024.png" />
-    <meta property="og:url" content="https://www.widgetilities.com/reading_time.html" />
-    <meta property="og:type" content="website" />
+  .mq-card{position:relative;width:clamp(215px,29vw,255px);height:clamp(456px,62vw,540px);border-radius:24px;padding:clamp(28px,4vw,36px) clamp(16px,2.5vw,20px) clamp(20px,3vw,26px);display:flex;flex-direction:column;align-items:center;box-shadow:var(--shadow);flex-shrink:0;overflow:hidden;}
+  .mq-card .mq-head{font-weight:800;font-size:clamp(16px,2.2vw,19px);line-height:1.22;letter-spacing:-0.01em;color:#fff;text-align:center;}
+  .mq-phone{position:relative;background:#0b0b0d;border-radius:26px;padding:7px;box-shadow:0 18px 34px rgba(0,0,0,.35);}
+  .mq-phone .mq-screen{position:relative;width:100%;height:100%;border-radius:19px;overflow:hidden;background:#fff;}
+  .mq-phone .mq-screen img{width:100%;height:100%;object-fit:cover;display:block;}
+  .mq-phone .mq-notch{position:absolute;top:6px;left:50%;transform:translateX(-50%);width:44px;height:13px;background:#0b0b0d;border-radius:7px;pointer-events:none;}
 
-    <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  .app2col{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);}
+  @media (max-width:760px){ .app2col{grid-template-columns:1fr;gap:32px;} }
 
-    <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Raleway:400,300,600"
-      rel="stylesheet"
-      type="text/css"
-    />
+  .foot-link:hover{color:var(--text);}
+  .seg-btn{}
+</style>
 
-    <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link rel="stylesheet" href="slick/slick.css"/>
-    <link rel="stylesheet" href="slick/slick-theme.css"/>
-    
-    <link rel="stylesheet" href="css/normalize.css" />
-    <link rel="stylesheet" href="css/skeleton.css" />
-    <link rel="stylesheet" href="css/custom.css" />
+<div class="app-root" data-theme="auto" data-screen-label="ReadingTime">
 
-    <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link rel="icon" type="image/png" href="images/favicon.png" />
-  </head>
-  <body tabindex="0">
-    <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <script id="replace_with_navbar" src="js/nav.js">
-    </script>
-    
-
-    <div class="section top">
-      <div class="container">
-        <div class="one-half column" style="margin-top: 15%">
-          <h1>ReadingTime</h1>
-          <h4>Your Family's Private Reading Tracker — Now Synced Everywhere</h4>
+  <!-- ===== NAV ===== -->
+  <div style="position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);background:var(--nav-bg);border-bottom:1px solid var(--border);">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px clamp(20px,5vw,40px);">
+      <a href="index.html" style="display:flex;align-items:center;gap:11px;">
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:3px;width:26px;height:26px;">
+          <div style="background:var(--logo-d);border-radius:6px;"></div>
+          <div style="background:var(--logo-d);border-radius:6px;"></div>
+          <div style="background:var(--logo-d);border-radius:6px;"></div>
+          <div style="background:var(--logo-l);border-radius:6px;"></div>
         </div>
-        <div class="one-half column" style="margin-top: 0%">
-          <img
-            class="u-max-full-width appIcon"
-            src="images/readingtime-icon-large-1024.png"
-          />
+        <span class="nav-wordmark" style="font-weight:600;font-size:18px;letter-spacing:-0.02em;color:var(--text);">Widgetilities</span>
+      </a>
+      <div style="display:flex;align-items:center;gap:clamp(14px,3vw,24px);">
+        <div class="nav-links">
+          <a href="index.html#apps" style="font-size:14px;font-weight:500;color:var(--text);">Apps</a>
+          <a href="about.html" style="font-size:14px;font-weight:500;color:var(--text2);">About</a>
+          <a href="index.html#contact" style="font-size:14px;font-weight:500;color:var(--text2);">Contact</a>
         </div>
-      </div>
-    </div>
-
-
-    <div class="section middle">
-      <div class="container text-block">
-        <h4>Description</h4>
-        <p class="text-block">
-          ReadingTime is a private reading tracker for your whole family — like Goodreads, but just for you. No social network, no public reviews, just your family's books and reading history in one place.
-        </p>
-        <p class="text-block">
-          Every reader in your family gets their own shelf with Currently Reading, Want to Read, and Already Read sections. Kids can rate their books and add notes. Parents can log sessions, run a timer while reading, and generate PDF reports — perfect for school reading programs.
-        </p>
-        <h5>Free to try &mdash; Full Unlock just $1.99</h5>
-        <p>&#9733;&#9733;&#9733;&#9733;&#9733; 4.6 &middot; 145 ratings on the App Store</p>
-        <!--            <a class="button button-primary" href="https://apps.apple.com/us/app/reading-time-family-tracker/id1448609572">Try It</a>-->
-        <a
-          href="https://apps.apple.com/us/app/reading-time-family-tracker/id1448609572"
-          target="_blank"
-          ><img
-            src="images/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.png"
-            width="150"
-        /></a>
-      </div>
-    </div>
-
-    
-    <div class="section">
-      <div class="wrapper">
-        <div class="photo-carousel">
-          <div><img src="images/screenshots/reading_time/1.png"></div>
-          <div><img src="images/screenshots/reading_time/2.png"></div>
-          <div><img src="images/screenshots/reading_time/3.png"></div>
-          <div><img src="images/screenshots/reading_time/4.png"></div>
-          <div><img src="images/screenshots/reading_time/5.png"></div>
-          <div><img src="images/screenshots/reading_time/6.png"></div>
+        <!-- theme toggle -->
+        <div style="display:flex;background:var(--seg-bg);border-radius:980px;padding:3px;gap:2px;">
+          <div class="seg-btn" data-theme-btn="auto" title="Auto (match system)" onclick="wgSetTheme('auto')">Auto</div>
+          <div class="seg-btn" data-theme-btn="light" title="Light" onclick="wgSetTheme('light')">☀</div>
+          <div class="seg-btn" data-theme-btn="dark" title="Dark" onclick="wgSetTheme('dark')">☾</div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="section bottom text-block">
-      <div class="container">
-        <h4>Features</h4>
-        <ul>
-          <li>
-            Easily track number of books read, when they read them, how many
-            minutes they spent reading, how many total pages.
-          </li>
-          <li>
-            Generate a handy report that you can save as PDF or print right from
-            your device
-          </li>
-          <li>
-            Use a built-in timer or stopwatch as you read, or just log the amount
-            of time after the fact
-          </li>
-          <li>
-            Import books either by scanning the barcode, manual entry or searching
-            the internet (powered by Google Books)
-          </li>
-          <li>
-            Individual readers can rate their books and add notes, so you can
-            track what they do and don't like
-          </li>
-        </ul>
-    </div>
-    </div>
-
-
-    <div class="section middle text-block">
-      <div class="container">
-        <h4>What's New in Version 2</h4>
-        <p>Version 2 is the biggest update ReadingTime has ever received — a complete rebuild focused on reliability, polish, and making it easier for families to read together.</p>
-        <ul>
-          <li>
-            <strong>iCloud Sync</strong> — Your reading data now follows you across all your devices automatically. Pick up on iPad where you left off on iPhone.
-          </li>
-          <li>
-            <strong>Family Sharing</strong> — Share an individual reader's shelf with another family member. Both parents can track the same child's reading progress in real time.
-          </li>
-          <li>
-            <strong>Fully Redesigned</strong> — Rebuilt from the ground up for a significantly more polished, smooth, and modern feel.
-          </li>
-          <li>
-            <strong>Better on iPad and Mac</strong> — Improved support for iPad and Mac means ReadingTime feels right at home on any Apple device.
-          </li>
-        </ul>
-        <a href="privacy.html">Privacy Policy</a>
+  <!-- ===== APP HERO ===== -->
+  <div style="position:relative;overflow:hidden;text-align:center;padding:clamp(54px,8vw,86px) clamp(20px,5vw,40px) clamp(34px,5vw,48px);">
+    <div style="position:absolute;top:-140px;left:50%;transform:translateX(-50%);width:760px;height:520px;background:radial-gradient(ellipse at center,color-mix(in srgb,var(--rt) 26%,transparent) 0%,transparent 66%);pointer-events:none;"></div>
+    <div style="position:relative;max-width:640px;margin:0 auto;">
+      <img src="assets/readingtime-icon.png" style="width:112px;border-radius:25px;box-shadow:0 14px 40px color-mix(in srgb,var(--rt) 40%,transparent);">
+      <h1 style="font-weight:600;font-size:clamp(34px,6vw,58px);line-height:1.04;letter-spacing:-0.03em;margin-top:24px;color:var(--text);">ReadingTime</h1>
+      <p style="font-weight:400;font-size:clamp(17px,2.4vw,22px);line-height:1.5;color:var(--text2);margin-top:16px;">Your family's private reading tracker — now synced everywhere.</p>
+      <div style="display:flex;gap:18px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:22px;">
+        <div style="display:flex;align-items:center;gap:7px;"><span style="color:var(--gold);font-size:17px;letter-spacing:1px;">★★★★★</span><span style="font-weight:600;font-size:15px;color:var(--text);">4.6</span><span style="font-size:15px;color:var(--text3);">· 145 ratings</span></div>
+        <div style="width:1px;height:18px;background:var(--border);"></div>
+        <div style="font-size:15px;color:var(--text2);">Free to try · <span style="color:var(--text);font-weight:600;">$1.99</span> full unlock</div>
       </div>
-      
+      <a href="https://apps.apple.com/us/app/reading-time-family-tracker/id1448609572" target="_blank" style="display:inline-block;margin-top:28px;"><img src="assets/appstore-badge.png" style="height:50px;"></a>
     </div>
+  </div>
 
-    <!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-  <script type="text/javascript" src="slick/slick.min.js"></script>
+  <!-- ===== SHOWCASE MARQUEE ===== -->
+  <div class="mq-wrap" style="padding:clamp(16px,3vw,28px) 0;">
+    <div class="mq-track"><div class="mq-card" style="background:#4570A8;">
+      <div class="mq-head">Your whole family's reading life, in one place</div>
+      <div style="flex:1;display:flex;align-items:center;margin-top:18px;">
+        <div class="mq-phone" style="width:150px;height:308px;">
+          <div class="mq-screen"><img src="assets/rt2/iphone-readers.png" alt="ReadingTime screenshot"><div class="mq-notch"></div></div>
+        </div>
+      </div>
+    </div><div class="mq-card" style="background:#48885A;align-items:stretch;">
+      <div class="mq-head" style="text-align:left;">Share with family — everyone stays in sync, automatically</div>
+      <div style="position:relative;flex:1;margin-top:16px;">
+        <div class="mq-phone" style="position:absolute;left:0;top:46px;width:112px;height:230px;transform:rotate(-8deg);z-index:1;">
+          <div class="mq-screen"><img src="assets/rt2/iphone-readers.png" alt="Readers grid"></div>
+        </div>
+        <div class="mq-phone" style="position:absolute;right:0;top:6px;width:134px;height:276px;transform:rotate(7deg);z-index:2;">
+          <div class="mq-screen"><img src="assets/rt2/iphone-booklist-anne.png" alt="Shared booklist"><div class="mq-notch"></div></div>
+        </div>
+      </div>
+    </div><div class="mq-card" style="background:#883058;">
+      <div class="mq-head">See what everyone's reading at a glance</div>
+      <div style="flex:1;display:flex;align-items:center;margin-top:18px;">
+        <div class="mq-phone" style="width:150px;height:308px;">
+          <div class="mq-screen"><img src="assets/rt2/iphone-booklist-johnny-dark.png" alt="ReadingTime screenshot"><div class="mq-notch"></div></div>
+        </div>
+      </div>
+    </div><div class="mq-card" style="background:#A85840;">
+      <div class="mq-head">Log a reading session in seconds</div>
+      <div style="flex:1;display:flex;align-items:center;margin-top:18px;">
+        <div class="mq-phone" style="width:150px;height:308px;">
+          <div class="mq-screen"><img src="assets/rt2/iphone-log-session.png" alt="ReadingTime screenshot"><div class="mq-notch"></div></div>
+        </div>
+      </div>
+    </div><div class="mq-card" style="background:#7858A8;">
+      <div class="mq-head">Beautiful reading reports, always ready</div>
+      <div style="flex:1;display:flex;align-items:center;margin-top:18px;">
+        <div class="mq-phone" style="width:150px;height:308px;">
+          <div class="mq-screen"><img src="assets/rt2/iphone-report.png" alt="ReadingTime screenshot"><div class="mq-notch"></div></div>
+        </div>
+      </div>
+    </div><div class="mq-card" style="background:#388880;">
+      <div class="mq-head">One library. All your family's books</div>
+      <div style="flex:1;display:flex;align-items:center;margin-top:18px;">
+        <div class="mq-phone" style="width:150px;height:308px;">
+          <div class="mq-screen"><img src="assets/rt2/iphone-library.png" alt="ReadingTime screenshot"><div class="mq-notch"></div></div>
+        </div>
+      </div>
+    </div><div class="mq-card" style="background:#4570A8;">
+      <div class="mq-head">Your whole family's reading life, in one place</div>
+      <div style="flex:1;display:flex;align-items:center;margin-top:18px;">
+        <div class="mq-phone" style="width:150px;height:308px;">
+          <div class="mq-screen"><img src="assets/rt2/iphone-readers.png" alt="ReadingTime screenshot"><div class="mq-notch"></div></div>
+        </div>
+      </div>
+    </div><div class="mq-card" style="background:#48885A;align-items:stretch;">
+      <div class="mq-head" style="text-align:left;">Share with family — everyone stays in sync, automatically</div>
+      <div style="position:relative;flex:1;margin-top:16px;">
+        <div class="mq-phone" style="position:absolute;left:0;top:46px;width:112px;height:230px;transform:rotate(-8deg);z-index:1;">
+          <div class="mq-screen"><img src="assets/rt2/iphone-readers.png" alt="Readers grid"></div>
+        </div>
+        <div class="mq-phone" style="position:absolute;right:0;top:6px;width:134px;height:276px;transform:rotate(7deg);z-index:2;">
+          <div class="mq-screen"><img src="assets/rt2/iphone-booklist-anne.png" alt="Shared booklist"><div class="mq-notch"></div></div>
+        </div>
+      </div>
+    </div><div class="mq-card" style="background:#883058;">
+      <div class="mq-head">See what everyone's reading at a glance</div>
+      <div style="flex:1;display:flex;align-items:center;margin-top:18px;">
+        <div class="mq-phone" style="width:150px;height:308px;">
+          <div class="mq-screen"><img src="assets/rt2/iphone-booklist-johnny-dark.png" alt="ReadingTime screenshot"><div class="mq-notch"></div></div>
+        </div>
+      </div>
+    </div><div class="mq-card" style="background:#A85840;">
+      <div class="mq-head">Log a reading session in seconds</div>
+      <div style="flex:1;display:flex;align-items:center;margin-top:18px;">
+        <div class="mq-phone" style="width:150px;height:308px;">
+          <div class="mq-screen"><img src="assets/rt2/iphone-log-session.png" alt="ReadingTime screenshot"><div class="mq-notch"></div></div>
+        </div>
+      </div>
+    </div><div class="mq-card" style="background:#7858A8;">
+      <div class="mq-head">Beautiful reading reports, always ready</div>
+      <div style="flex:1;display:flex;align-items:center;margin-top:18px;">
+        <div class="mq-phone" style="width:150px;height:308px;">
+          <div class="mq-screen"><img src="assets/rt2/iphone-report.png" alt="ReadingTime screenshot"><div class="mq-notch"></div></div>
+        </div>
+      </div>
+    </div><div class="mq-card" style="background:#388880;">
+      <div class="mq-head">One library. All your family's books</div>
+      <div style="flex:1;display:flex;align-items:center;margin-top:18px;">
+        <div class="mq-phone" style="width:150px;height:308px;">
+          <div class="mq-screen"><img src="assets/rt2/iphone-library.png" alt="ReadingTime screenshot"><div class="mq-notch"></div></div>
+        </div>
+      </div>
+    </div></div>
+  </div>
 
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $('.photo-carousel').slick({
-        slidesToShow: 3,
-        dots: true,
-        // centerMode: true,
-      });
-    });
-  </script>
-   
-  </body>
+  <!-- ===== WHAT'S NEW V2 ===== -->
+  <div id="whatsnew" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);scroll-margin-top:70px;margin-top:clamp(20px,4vw,40px);">
+    <div style="max-width:1100px;margin:0 auto;padding:clamp(50px,7vw,80px) clamp(20px,5vw,40px);">
+      <div style="text-align:center;max-width:620px;margin:0 auto;">
+        <div style="display:inline-block;font-weight:600;font-size:11px;color:#fff;background:var(--rt);padding:5px 12px;border-radius:980px;letter-spacing:0.04em;">WHAT'S NEW · VERSION 2</div>
+        <h2 style="font-weight:600;font-size:clamp(30px,4.5vw,44px);letter-spacing:-0.025em;margin-top:18px;line-height:1.08;color:var(--text);">The biggest update yet.</h2>
+        <p style="font-size:clamp(16px,2.2vw,19px);line-height:1.55;color:var(--text2);margin-top:16px;">Version 2 is a complete rebuild focused on reliability, polish, and making it easier for families to read together.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:44px;">
+        <div style="background:var(--card);border:1px solid var(--card-border);border-radius:20px;padding:28px 26px;">
+          <div style="font-weight:600;font-size:18px;color:var(--rt);">iCloud Sync</div>
+          <div style="font-size:15px;line-height:1.55;color:var(--text2);margin-top:10px;">Your reading data follows you across all your devices automatically. Pick up on iPad where you left off on iPhone.</div>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--card-border);border-radius:20px;padding:28px 26px;">
+          <div style="font-weight:600;font-size:18px;color:var(--rt);">Family Sharing</div>
+          <div style="font-size:15px;line-height:1.55;color:var(--text2);margin-top:10px;">Share an individual reader's shelf with another family member. Both parents can track the same child in real time.</div>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--card-border);border-radius:20px;padding:28px 26px;">
+          <div style="font-weight:600;font-size:18px;color:var(--rt);">Fully Redesigned</div>
+          <div style="font-size:15px;line-height:1.55;color:var(--text2);margin-top:10px;">Rebuilt from the ground up for a significantly more polished, smooth, and modern feel.</div>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--card-border);border-radius:20px;padding:28px 26px;">
+          <div style="font-weight:600;font-size:18px;color:var(--rt);">Better on iPad &amp; Mac</div>
+          <div style="font-size:15px;line-height:1.55;color:var(--text2);margin-top:10px;">Improved support means ReadingTime feels right at home on any Apple device.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DESCRIPTION + FEATURES ===== -->
+  <div style="max-width:1100px;margin:0 auto;padding:clamp(50px,7vw,80px) clamp(20px,5vw,40px);">
+    <div class="app2col">
+      <div>
+        <div style="font-weight:600;font-size:13px;color:var(--text3);letter-spacing:0.06em;text-transform:uppercase;">What it is</div>
+        <h2 style="font-weight:600;font-size:clamp(26px,3.5vw,34px);letter-spacing:-0.02em;margin-top:12px;color:var(--text);line-height:1.12;">Like Goodreads, but just for your family.</h2>
+        <p style="font-size:17px;line-height:1.6;color:var(--text2);margin-top:18px;">A private reading tracker for your whole family — no social network, no public reviews. Just your family's books and reading history in one place.</p>
+        <p style="font-size:17px;line-height:1.6;color:var(--text2);margin-top:14px;">Every reader gets their own shelf with Currently Reading, Want to Read, and Already Read. Kids can rate books and add notes. Parents can log sessions, run a timer while reading, and generate PDF reports — perfect for school reading programs.</p>
+      </div>
+      <div>
+        <div style="font-weight:600;font-size:13px;color:var(--text3);letter-spacing:0.06em;text-transform:uppercase;">Features</div>
+        <div style="display:flex;flex-direction:column;gap:18px;margin-top:18px;">
+          <div style="display:flex;gap:13px;align-items:flex-start;"><div style="width:7px;height:7px;border-radius:50%;background:var(--rt);margin-top:8px;flex-shrink:0;"></div><div style="font-size:16px;line-height:1.5;color:var(--text2);">Track books read, dates, minutes spent, and total pages for every reader.</div></div>
+          <div style="display:flex;gap:13px;align-items:flex-start;"><div style="width:7px;height:7px;border-radius:50%;background:var(--rt);margin-top:8px;flex-shrink:0;"></div><div style="font-size:16px;line-height:1.5;color:var(--text2);">Generate a report you can save as PDF or print right from your device.</div></div>
+          <div style="display:flex;gap:13px;align-items:flex-start;"><div style="width:7px;height:7px;border-radius:50%;background:var(--rt);margin-top:8px;flex-shrink:0;"></div><div style="font-size:16px;line-height:1.5;color:var(--text2);">Use a built-in timer or stopwatch as you read — or just log the time afterward.</div></div>
+          <div style="display:flex;gap:13px;align-items:flex-start;"><div style="width:7px;height:7px;border-radius:50%;background:var(--rt);margin-top:8px;flex-shrink:0;"></div><div style="font-size:16px;line-height:1.5;color:var(--text2);">Add books by scanning the barcode, manual entry, or searching the web (Google Books).</div></div>
+          <div style="display:flex;gap:13px;align-items:flex-start;"><div style="width:7px;height:7px;border-radius:50%;background:var(--rt);margin-top:8px;flex-shrink:0;"></div><div style="font-size:16px;line-height:1.5;color:var(--text2);">Individual readers can rate their books and add notes.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <div id="contact" style="background:var(--surface);border-top:1px solid var(--border);scroll-margin-top:70px;">
+    <div class="foot-grid" style="max-width:1100px;margin:0 auto;padding:clamp(48px,6vw,68px) clamp(20px,5vw,40px);">
+      <div style="min-width:200px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:2.5px;width:22px;height:22px;">
+            <div style="background:var(--logo-d);border-radius:5px;"></div><div style="background:var(--logo-d);border-radius:5px;"></div><div style="background:var(--logo-d);border-radius:5px;"></div><div style="background:var(--logo-l);border-radius:5px;"></div>
+          </div>
+          <span style="font-weight:600;font-size:17px;letter-spacing:-0.02em;color:var(--text);">Widgetilities</span>
+        </div>
+        <p style="font-size:14px;line-height:1.6;color:var(--text2);margin-top:16px;max-width:280px;">An independent app studio making useful, beautifully crafted apps for parents and educators.</p>
+        <a href="https://apps.apple.com/us/developer/widgetilities-llc/id1373578566" target="_blank" style="display:inline-block;margin-top:18px;"><img src="assets/appstore-badge.png" style="height:40px;"></a>
+      </div>
+      <div>
+        <div style="font-weight:600;font-size:13px;color:var(--text3);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:8px;">Apps</div>
+        <a class="foot-link" href="reading_time.html">ReadingTime</a><br>
+        <a class="foot-link" href="lectios.html">Lectios</a><br>
+        <a class="foot-link" href="number_builder.html">NumberBuilder</a><br>
+        <a class="foot-link" href="other_apps.html">Other Apps</a>
+      </div>
+      <div>
+        <div style="font-weight:600;font-size:13px;color:var(--text3);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:8px;">Company</div>
+        <a class="foot-link" href="about.html">About</a><br>
+        <a class="foot-link" href="privacy.html">Privacy</a><br>
+        <a class="foot-link" href="https://apps.apple.com/us/developer/widgetilities-llc/id1373578566" target="_blank">App Store</a>
+      </div>
+      <div>
+        <div style="font-weight:600;font-size:13px;color:var(--text3);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:8px;">Get in touch</div>
+        <a class="foot-link" href="mailto:info@widgetilities.com">info@widgetilities.com</a>
+      </div>
+    </div>
+    <div style="border-top:1px solid var(--border);">
+      <div style="max-width:1100px;margin:0 auto;padding:20px clamp(20px,5vw,40px);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+        <span style="font-size:13px;color:var(--text3);">© 2026 Widgetilities LLC</span>
+        <span style="font-size:13px;color:var(--text3);">Built &amp; maintained by Micah Chollar</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script>
+(function(){
+  function seg(active){
+    return "cursor:pointer;user-select:none;font-size:12px;font-weight:600;line-height:1;display:flex;align-items:center;justify-content:center;min-width:30px;height:24px;padding:0 10px;border-radius:980px;transition:background .2s;color:var(--text);"
+      + (active ? "background:var(--seg-active);box-shadow:0 1px 3px rgba(0,0,0,.12);" : "background:transparent;");
+  }
+  function applyTheme(t){
+    var root = document.querySelector('.app-root');
+    if (root) root.setAttribute('data-theme', t);
+    var btns = document.querySelectorAll('[data-theme-btn]');
+    for (var i=0;i<btns.length;i++){
+      btns[i].setAttribute('style', seg(btns[i].getAttribute('data-theme-btn') === t));
+    }
+  }
+  window.wgSetTheme = function(t){
+    try { localStorage.setItem('wg-theme', t); } catch(e){}
+    applyTheme(t);
+  };
+  var t = null;
+  try {
+    var u = new URLSearchParams(location.search).get('theme');
+    t = u || localStorage.getItem('wg-theme');
+  } catch(e){}
+  if (t !== 'light' && t !== 'dark' && t !== 'auto') t = 'auto';
+  applyTheme(t);
+
+  if (location.hash) {
+    var target = function(){ return document.getElementById(location.hash.slice(1)); };
+    var rescroll = function(){ var el = target(); if (el) el.scrollIntoView(); };
+    window.addEventListener('load', rescroll);
+    setTimeout(rescroll, 300);
+    setTimeout(rescroll, 900);
+  }
+})();
+</script>
+</body>
 </html>

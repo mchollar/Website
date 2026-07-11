@@ -1,147 +1,213 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <meta charset="utf-8" />
-    <title>Widgetilities | NumberBuilder</title>
-    <meta name="description" content="NumberBuilder App" />
-    <meta name="author" content="Micah Chollar" />
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NumberBuilder — Widgetilities</title>
+<link rel="icon" href="assets/favicon.png">
+</head>
+<body>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:var(--bg,#fbfbfd);}
+  .app-root{
+    --bg:#f5f5f7; --bg2:#fbfbfd; --surface:#ffffff; --card:#ffffff; --card-border:#e9e9ec;
+    --text:#1d1d1f; --text2:#5f5f66; --text3:#8a8a90; --border:#e9e9ec;
+    --rt:#2f5fb0; --lec:#34a056; --nb:#dd5430; --gold:#c8920a;
+    --rt-soft:#eef3fb; --lec-soft:#ecf6ef; --nb-soft:#fdede8;
+    --nav-bg:rgba(251,251,253,.72); --shadow:0 18px 50px rgba(0,0,0,.13);
+    --orb-rt:rgba(47,95,176,.18); --orb-lec:rgba(52,160,86,.16); --orb-gold:rgba(200,146,10,.15); --center-c:rgba(58,111,240,0);
+    --seg-bg:#e9e9ec; --seg-active:#fff; --logo-d:#1d1d1f; --logo-l:#c7c7cc;
+    color-scheme:light;
+  }
+  .app-root[data-theme="dark"]{
+    --bg:#0a0e27; --bg2:#0b1238; --surface:rgba(255,255,255,.045); --card:rgba(255,255,255,.045); --card-border:rgba(255,255,255,.09);
+    --text:#f5f5f7; --text2:rgba(255,255,255,.66); --text3:rgba(255,255,255,.5); --border:rgba(255,255,255,.1);
+    --rt:#5a8bff; --lec:#4cc46a; --nb:#ff7a52; --gold:#f5b301;
+    --rt-soft:rgba(90,139,255,.12); --lec-soft:rgba(76,196,106,.12); --nb-soft:rgba(255,122,82,.12);
+    --nav-bg:rgba(10,14,39,.66); --shadow:0 24px 60px rgba(0,0,0,.5);
+    --orb-rt:rgba(58,111,240,0); --orb-lec:rgba(58,111,240,0); --orb-gold:rgba(58,111,240,0); --center-c:rgba(58,111,240,.34);
+    --seg-bg:rgba(255,255,255,.1); --seg-active:rgba(255,255,255,.22); --logo-d:#5a8bff; --logo-l:#f5b301;
+    color-scheme:dark;
+  }
+  @media (prefers-color-scheme:dark){
+    .app-root[data-theme="auto"]{
+      --bg:#0a0e27; --bg2:#0b1238; --surface:rgba(255,255,255,.045); --card:rgba(255,255,255,.045); --card-border:rgba(255,255,255,.09);
+      --text:#f5f5f7; --text2:rgba(255,255,255,.66); --text3:rgba(255,255,255,.5); --border:rgba(255,255,255,.1);
+      --rt:#5a8bff; --lec:#4cc46a; --nb:#ff7a52; --gold:#f5b301;
+      --rt-soft:rgba(90,139,255,.12); --lec-soft:rgba(76,196,106,.12); --nb-soft:rgba(255,122,82,.12);
+      --nav-bg:rgba(10,14,39,.66); --shadow:0 24px 60px rgba(0,0,0,.5);
+      --orb-rt:rgba(58,111,240,0); --orb-lec:rgba(58,111,240,0); --orb-gold:rgba(58,111,240,0); --center-c:rgba(58,111,240,.34);
+      --seg-bg:rgba(255,255,255,.1); --seg-active:rgba(255,255,255,.22); --logo-d:#5a8bff; --logo-l:#f5b301;
+      color-scheme:dark;
+    }
+  }
+  html{scroll-behavior:smooth;}
+  .app-root{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue","Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);color:var(--text);min-height:100vh;transition:background .4s ease,color .4s ease;}
+  .nav-links{display:flex;gap:clamp(16px,3vw,32px);align-items:center;}
+  @media (max-width:560px){ .nav-wordmark{display:none;} .nav-links{gap:16px;} }
+  a{color:inherit;text-decoration:none;}
+  .foot-link{color:var(--text2);font-size:14px;line-height:2.1;transition:color .2s;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;}
+  @media (max-width:760px){ .foot-grid{grid-template-columns:1fr 1fr;gap:28px 24px;} }
+  @keyframes wg-marquee{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 10px))}}
+  .mq-wrap{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);}
+  .mq-track{display:flex;gap:20px;width:max-content;animation:wg-marquee 55s linear infinite;}
+  .mq-wrap:hover .mq-track{animation-play-state:paused;}
+  .mq-track img{height:clamp(360px,50vw,460px);border-radius:30px;box-shadow:var(--shadow);display:block;}
+  .app2col{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);}
+  @media (max-width:760px){ .app2col{grid-template-columns:1fr;gap:32px;} }
 
-    <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  .foot-link:hover{color:var(--text);}
+  .seg-btn{}
+</style>
 
-    <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link
-      href="//fonts.googleapis.com/css?family=Raleway:400,300,600"
-      rel="stylesheet"
-      type="text/css"
-    />
+<div class="app-root" data-theme="auto" data-screen-label="NumberBuilder">
 
-    <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link rel="stylesheet" type="text/css" href="slick/slick.css" />
-    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
-    <link rel="stylesheet" href="css/normalize.css" />
-    <link rel="stylesheet" href="css/skeleton.css" />
-    <link rel="stylesheet" href="css/custom.css" />
-
-    <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link rel="icon" type="image/png" href="images/favicon.png" />
-  </head>
-  <body tabindex="0">
-    <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <script id="replace_with_navbar" src="js/nav.js"></script>
-
-    <div class="section top">
-      <div class="container">
-        <div class="one-half column" style="margin-top: 15%">
-            <h1 class="page-title">Number Builder</h1>
-            <h4>Math Puzzle Solver</h4>
+  <!-- ===== NAV ===== -->
+  <div style="position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);background:var(--nav-bg);border-bottom:1px solid var(--border);">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px clamp(20px,5vw,40px);">
+      <a href="index.html" style="display:flex;align-items:center;gap:11px;">
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:3px;width:26px;height:26px;">
+          <div style="background:var(--logo-d);border-radius:6px;"></div>
+          <div style="background:var(--logo-d);border-radius:6px;"></div>
+          <div style="background:var(--logo-d);border-radius:6px;"></div>
+          <div style="background:var(--logo-l);border-radius:6px;"></div>
         </div>
-        <div class="one-half column" style="margin-top: 0%">
-          <img
-            class="u-max-full-width appIcon"
-            src="images/number-builder-large-1024.png"
-          />
+        <span class="nav-wordmark" style="font-weight:600;font-size:18px;letter-spacing:-0.02em;color:var(--text);">Widgetilities</span>
+      </a>
+      <div style="display:flex;align-items:center;gap:clamp(14px,3vw,24px);">
+        <div class="nav-links">
+          <a href="index.html#apps" style="font-size:14px;font-weight:500;color:var(--text);">Apps</a>
+          <a href="about.html" style="font-size:14px;font-weight:500;color:var(--text2);">About</a>
+          <a href="index.html#contact" style="font-size:14px;font-weight:500;color:var(--text2);">Contact</a>
         </div>
-      </div>
-    </div>
-
-    <div class="section middle text-block">
-      <div class="container">
-        <h4>Description</h4>
-        <p>
-          Stuck trying to create an equation while playing a game like Number
-          Knockout using dice and math? Number Builder will show you the
-          solution!
-        </p>
-        <p>
-          Enter what your dice roll was, the number you're trying to reach, and
-          Number Builder will calculate all possible solutions using basic
-          arithmetic (+, -, x, ÷), as well as powers and roots!
-        </p>
-        <p>
-          For those unfamiliar with Number Knockout (also known as Board Slam),
-          it's a math game using a 6x6 grid of numbers and three dice. Kids roll
-          the dice and try to create as many numbers on their board using math.
-          They have to use each die once and only once, and use addition,
-          subtraction, multiplication and division, as well as powers and roots
-          (for the advanced students). For each unique solution, they get to
-          cross off that number from their board. Whoever completes their board
-          first wins! Unfortunately, sometimes it can be quite tricky to find a
-          solution for a particular number. This is where Number Builder comes
-          in. It will calculate all possible solutions given the dice roll and
-          the number to find.
-        </p>
-        <p>
-          Super handy for teachers and parents to help kids who are stuck trying
-          to find a particular solution. Never get stuck again!
-        </p>
-        <p>
-          Note: This app is only a tool and does not contain the game itself -
-          merely a way of finding solutions. This app is not endorsed by
-          National Number Knockout or Classical Conversations.
-        </p>
-        <a
-          href="https://apps.apple.com/us/app/number-builder-puzzle-solver/id1489526164"
-          target="_blank"
-          ><img
-            src="images/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.png"
-            width="150"
-        /></a>
-        <!-- <a
-          class="button button-primary"
-          href="https://apps.apple.com/us/app/number-builder-puzzle-solver/id1489526164"
-          >Get It - Free!</a
-        > -->
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="wrapper">
-        <div class="photo-carousel">
-          <div><img src="images/screenshots/numberbuilder/1.png" /></div>
-          <div><img src="images/screenshots/numberbuilder/2.png" /></div>
-          <div><img src="images/screenshots/numberbuilder/3.png" /></div>
-          <div><img src="images/screenshots/numberbuilder/4.png" /></div>
-          <div><img src="images/screenshots/numberbuilder/5.png" /></div>
+        <!-- theme toggle -->
+        <div style="display:flex;background:var(--seg-bg);border-radius:980px;padding:3px;gap:2px;">
+          <div class="seg-btn" data-theme-btn="auto" title="Auto (match system)" onclick="wgSetTheme('auto')">Auto</div>
+          <div class="seg-btn" data-theme-btn="light" title="Light" onclick="wgSetTheme('light')">☀</div>
+          <div class="seg-btn" data-theme-btn="dark" title="Dark" onclick="wgSetTheme('dark')">☾</div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="section bottom text-block">
-      <div class="container">
-        <a href="privacy.html">Privacy Policy</a>
-      <div class="container">
-
+  <!-- ===== APP HERO ===== -->
+  <div style="position:relative;overflow:hidden;text-align:center;padding:clamp(54px,8vw,86px) clamp(20px,5vw,40px) clamp(34px,5vw,48px);">
+    <div style="position:absolute;top:-140px;left:50%;transform:translateX(-50%);width:760px;height:520px;background:radial-gradient(ellipse at center,color-mix(in srgb,var(--nb) 24%,transparent) 0%,transparent 66%);pointer-events:none;"></div>
+    <div style="position:relative;max-width:640px;margin:0 auto;">
+      <img src="assets/numberbuilder-icon.png" style="width:112px;border-radius:25px;box-shadow:0 14px 40px color-mix(in srgb,var(--nb) 40%,transparent);">
+      <h1 style="font-weight:600;font-size:clamp(34px,6vw,58px);line-height:1.04;letter-spacing:-0.03em;margin-top:24px;color:var(--text);">NumberBuilder</h1>
+      <p style="font-weight:400;font-size:clamp(17px,2.4vw,22px);line-height:1.5;color:var(--text2);margin-top:16px;">A math puzzle solver for dice games like Number Knockout.</p>
+      <div style="display:flex;gap:18px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:22px;">
+        <div style="font-size:15px;color:var(--text2);">For students, parents &amp; teachers</div>
+        <div style="width:1px;height:18px;background:var(--border);"></div>
+        <div style="font-size:15px;color:var(--text2);">Free</div>
+      </div>
+      <a href="https://apps.apple.com/us/app/number-builder-puzzle-solver/id1489526164" target="_blank" style="display:inline-block;margin-top:28px;"><img src="assets/appstore-badge.png" style="height:50px;"></a>
     </div>
+  </div>
 
-    <!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- ===== SHOWCASE MARQUEE ===== -->
+  <div class="mq-wrap" style="padding:clamp(16px,3vw,28px) 0;">
+    <div class="mq-track"><img src="assets/nb/1.png" alt="NumberBuilder screenshot"><img src="assets/nb/2.png" alt="NumberBuilder screenshot"><img src="assets/nb/3.png" alt="NumberBuilder screenshot"><img src="assets/nb/4.png" alt="NumberBuilder screenshot"><img src="assets/nb/5.png" alt="NumberBuilder screenshot"><img src="assets/nb/1.png" alt="NumberBuilder screenshot"><img src="assets/nb/2.png" alt="NumberBuilder screenshot"><img src="assets/nb/3.png" alt="NumberBuilder screenshot"><img src="assets/nb/4.png" alt="NumberBuilder screenshot"><img src="assets/nb/5.png" alt="NumberBuilder screenshot"></div>
+  </div>
 
-    <script
-      type="text/javascript"
-      src="//code.jquery.com/jquery-1.11.0.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="//code.jquery.com/jquery-migrate-1.2.1.min.js"
-    ></script>
-    <script type="text/javascript" src="slick/slick.min.js"></script>
+  <!-- ===== DESCRIPTION + FEATURES ===== -->
+  <div style="max-width:1100px;margin:0 auto;padding:clamp(50px,7vw,80px) clamp(20px,5vw,40px);">
+    <div class="app2col">
+      <div>
+        <div style="font-weight:600;font-size:13px;color:var(--text3);letter-spacing:0.06em;text-transform:uppercase;">What it is</div>
+        <h2 style="font-weight:600;font-size:clamp(26px,3.5vw,34px);letter-spacing:-0.02em;margin-top:12px;color:var(--text);line-height:1.12;">Never get stuck on a number again.</h2>
+        <p style="font-size:17px;line-height:1.6;color:var(--text2);margin-top:18px;">Stuck creating an equation while playing a dice-and-math game like Number Knockout? Enter your dice roll and the number you're trying to reach, and NumberBuilder calculates every possible solution — using addition, subtraction, multiplication, division, powers, and roots.</p>
+        <p style="font-size:17px;line-height:1.6;color:var(--text2);margin-top:14px;">Super handy for teachers and parents helping kids who are stuck. Note: this is a solver tool, not the game itself, and is not affiliated with National Number Knockout or Classical Conversations.</p>
+      </div>
+      <div>
+        <div style="font-weight:600;font-size:13px;color:var(--text3);letter-spacing:0.06em;text-transform:uppercase;">How it helps</div>
+        <div style="display:flex;flex-direction:column;gap:18px;margin-top:18px;">
+          <div style="display:flex;gap:13px;align-items:flex-start;"><div style="width:7px;height:7px;border-radius:50%;background:var(--nb);margin-top:8px;flex-shrink:0;"></div><div style="font-size:16px;line-height:1.5;color:var(--text2);">Enter your dice roll and a target number to instantly find every valid solution.</div></div>
+          <div style="display:flex;gap:13px;align-items:flex-start;"><div style="width:7px;height:7px;border-radius:50%;background:var(--nb);margin-top:8px;flex-shrink:0;"></div><div style="font-size:16px;line-height:1.5;color:var(--text2);">Uses each die once, with basic arithmetic plus powers and roots for advanced play.</div></div>
+          <div style="display:flex;gap:13px;align-items:flex-start;"><div style="width:7px;height:7px;border-radius:50%;background:var(--nb);margin-top:8px;flex-shrink:0;"></div><div style="font-size:16px;line-height:1.5;color:var(--text2);">Perfect for the 6×6 grid of Number Knockout (also known as Board Slam).</div></div>
+          <div style="display:flex;gap:13px;align-items:flex-start;"><div style="width:7px;height:7px;border-radius:50%;background:var(--nb);margin-top:8px;flex-shrink:0;"></div><div style="font-size:16px;line-height:1.5;color:var(--text2);">A great teaching aid for parents and teachers — and completely free.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $(".photo-carousel").slick({
-          slidesToShow: 3,
-          dots: true,
-          // centerMode: true,
-        });
-      });
-    </script>
-  </body>
+  <!-- ===== FOOTER ===== -->
+  <div id="contact" style="background:var(--surface);border-top:1px solid var(--border);scroll-margin-top:70px;">
+    <div class="foot-grid" style="max-width:1100px;margin:0 auto;padding:clamp(48px,6vw,68px) clamp(20px,5vw,40px);">
+      <div style="min-width:200px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:2.5px;width:22px;height:22px;">
+            <div style="background:var(--logo-d);border-radius:5px;"></div><div style="background:var(--logo-d);border-radius:5px;"></div><div style="background:var(--logo-d);border-radius:5px;"></div><div style="background:var(--logo-l);border-radius:5px;"></div>
+          </div>
+          <span style="font-weight:600;font-size:17px;letter-spacing:-0.02em;color:var(--text);">Widgetilities</span>
+        </div>
+        <p style="font-size:14px;line-height:1.6;color:var(--text2);margin-top:16px;max-width:280px;">An independent app studio making useful, beautifully crafted apps for parents and educators.</p>
+        <a href="https://apps.apple.com/us/developer/widgetilities-llc/id1373578566" target="_blank" style="display:inline-block;margin-top:18px;"><img src="assets/appstore-badge.png" style="height:40px;"></a>
+      </div>
+      <div>
+        <div style="font-weight:600;font-size:13px;color:var(--text3);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:8px;">Apps</div>
+        <a class="foot-link" href="reading_time.html">ReadingTime</a><br>
+        <a class="foot-link" href="lectios.html">Lectios</a><br>
+        <a class="foot-link" href="number_builder.html">NumberBuilder</a><br>
+        <a class="foot-link" href="other_apps.html">Other Apps</a>
+      </div>
+      <div>
+        <div style="font-weight:600;font-size:13px;color:var(--text3);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:8px;">Company</div>
+        <a class="foot-link" href="about.html">About</a><br>
+        <a class="foot-link" href="privacy.html">Privacy</a><br>
+        <a class="foot-link" href="https://apps.apple.com/us/developer/widgetilities-llc/id1373578566" target="_blank">App Store</a>
+      </div>
+      <div>
+        <div style="font-weight:600;font-size:13px;color:var(--text3);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:8px;">Get in touch</div>
+        <a class="foot-link" href="mailto:info@widgetilities.com">info@widgetilities.com</a>
+      </div>
+    </div>
+    <div style="border-top:1px solid var(--border);">
+      <div style="max-width:1100px;margin:0 auto;padding:20px clamp(20px,5vw,40px);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+        <span style="font-size:13px;color:var(--text3);">© 2026 Widgetilities LLC</span>
+        <span style="font-size:13px;color:var(--text3);">Built &amp; maintained by Micah Chollar</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script>
+(function(){
+  function seg(active){
+    return "cursor:pointer;user-select:none;font-size:12px;font-weight:600;line-height:1;display:flex;align-items:center;justify-content:center;min-width:30px;height:24px;padding:0 10px;border-radius:980px;transition:background .2s;color:var(--text);"
+      + (active ? "background:var(--seg-active);box-shadow:0 1px 3px rgba(0,0,0,.12);" : "background:transparent;");
+  }
+  function applyTheme(t){
+    var root = document.querySelector('.app-root');
+    if (root) root.setAttribute('data-theme', t);
+    var btns = document.querySelectorAll('[data-theme-btn]');
+    for (var i=0;i<btns.length;i++){
+      btns[i].setAttribute('style', seg(btns[i].getAttribute('data-theme-btn') === t));
+    }
+  }
+  window.wgSetTheme = function(t){
+    try { localStorage.setItem('wg-theme', t); } catch(e){}
+    applyTheme(t);
+  };
+  var t = null;
+  try {
+    var u = new URLSearchParams(location.search).get('theme');
+    t = u || localStorage.getItem('wg-theme');
+  } catch(e){}
+  if (t !== 'light' && t !== 'dark' && t !== 'auto') t = 'auto';
+  applyTheme(t);
+
+  if (location.hash) {
+    var target = function(){ return document.getElementById(location.hash.slice(1)); };
+    var rescroll = function(){ var el = target(); if (el) el.scrollIntoView(); };
+    window.addEventListener('load', rescroll);
+    setTimeout(rescroll, 300);
+    setTimeout(rescroll, 900);
+  }
+})();
+</script>
+</body>
 </html>
